@@ -40,6 +40,12 @@ public class ConfiguredAPI {
       String password) throws Exception {
 
     logger.info("Configuring Pareto API...");
+    logger.info("Host: {}", thatHost);
+    logger.info("API Version: {}", thatApiVersion);
+    logger.info("Username: {}", username);
+    logger.info("Password: {}", "*".repeat(password.length()));
+    logger.info("Tenant: {}", tenantName);
+    logger.info("Schema: {}", schemaName);
     
     if (thatHost != null) {
       host = thatHost;

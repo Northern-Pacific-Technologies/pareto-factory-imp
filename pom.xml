@@ -119,7 +119,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>com.norpactech.pf.rdbms.Application</mainClass>
+              <mainClass>com.norpactech.pf.imp.Application</mainClass>
             </manifest>
           </archive>
         </configuration>

@@ -23,12 +23,12 @@ public class Application {
     String factoryURL = System.getenv("PARETO_FACTORY_URL");
     String apiVersion = System.getenv("PARETO_API_VERSION");
     
-    String tenant = System.getenv("TENANT");
-    String schema = System.getenv("SCHEMA");
+    String tenant = System.getenv("PARETO_TENANT_NAME");
+    String schema = System.getenv("PARETO_SCHEMA_NAME");
 
-    String dbUsername = System.getenv("DB_USERNAME");
-    String dbPassword = System.getenv("DB_PASSWORD");
-    String dbSchema   = System.getenv("DB_SCHEMA");
+    String dbUsername = System.getenv("PARETO_IMPORT_DB_USERNAME");
+    String dbPassword = System.getenv("PARETO_IMPORT_DB_PASSWORD");
+    String dbSchema   = System.getenv("PARETO_IMPORT_DB_SCHEMA");
     
     logger.info("Beginning Pareto Build");
 
@@ -53,22 +53,27 @@ public class Application {
     }    
 
     if (StringUtils.isEmpty(tenant)) {
-      logger.error("Null or empty Tenant. Set environment variable: TENANT. Terminating...");
+      logger.error("Null or empty Tenant. Set environment variable: PARETO_TENANT_NAME. Terminating...");
       System.exit(1);
     }    
     
     if (StringUtils.isEmpty(schema)) {
-      logger.error("Null or empty Schema. Set environment variable: SCHEMA. Terminating...");
+      logger.error("Null or empty Schema. Set environment variable: PARETO_SCHEMA_NAME. Terminating...");
       System.exit(1);
     }    
 
     if (StringUtils.isEmpty(dbUsername)) {
-      logger.error("Null or empty Database Username. Set environment variable: DB_USERNAME. Terminating...");
+      logger.error("Null or empty Database Username. Set environment variable: PARETO_IMPORT_DB_USERNAME. Terminating...");
       System.exit(1);
     }    
  
     if (StringUtils.isEmpty(dbPassword)) {
-      logger.error("Null or empty Database Password. Set environment variable: DB_PASSWORD. Terminating...");
+      logger.error("Null or empty Database Password. Set environment variable: PARETO_IMPORT_DB_PASSWORD. Terminating...");
+      System.exit(1);
+    }    
+    
+    if (StringUtils.isEmpty(dbSchema)) {
+      logger.error("Null or empty Database Password. Set environment variable: PARETO_IMPORT_DB_SCHEMA. Terminating...");
       System.exit(1);
     }    
     
