@@ -628,7 +628,7 @@ public class ImportDatabase {
           String columnName = column.getName().toLowerCase();
           Property property = propertyRepository.findOne(ConfiguredAPI.tenant.getId(), dataObject.getId(), columnName);
           if (property == null) {
-            throw new Exception ("Null Property on Index Column: " + columnName);
+            throw new Exception ("Null Property on Index Column: " + columnName + " for Data Object: " + dataObject.getName() + "! Terminating...");
           }
           DataIndexProperty dataIndexProperty = dataIndexPropertyRepository.findOne(ConfiguredAPI.tenant.getId(), dataIndex.getId(), property.getId());
           String sortOrder = column.getSortSequence().name();
