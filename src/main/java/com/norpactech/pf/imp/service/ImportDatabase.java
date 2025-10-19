@@ -95,6 +95,11 @@ public class ImportDatabase {
     
     logger.info("Import Database Beginning with Schema: " + ConfiguredAPI.schema.getName());
 
+    logger.info("Configuring Source Database...");
+    logger.info("Username: {}", username);
+    logger.info("Password: {}", "*".repeat(password.length()));
+    logger.info("Schema: {}", dbSchema);
+    
     new LoggingConfig(Level.OFF);
 
     var limitOptionsBuilder =
@@ -470,7 +475,7 @@ public class ImportDatabase {
     
     for (ContextDataType contextDataType : contextDataTypes) {
       if (columnDataType.equalsIgnoreCase(contextDataType.getName())
-      ||  columnDataType.equalsIgnoreCase(contextDataType.getAlias())) {
+      ||  columnDataType.equalsIgnoreCase(contextDataType.getAlias())) {        
         return contextDataType;
       }
     }
@@ -522,7 +527,7 @@ public class ImportDatabase {
       }
       Property foreignKeyProperty = propertyRepository.findOne(ConfiguredAPI.tenant.getId(), tableDataObject.getId(), fk.getForeignKey());
       if (foreignKeyProperty == null) {
-        throw new Exception ("Foreign Key Property '" + fk.getForeignKey() + "' not Found! Terminating...");
+        throw new Exception ("Foreign Key Property '" + fk.getForeignKey() + "' not Found for Table '" + tableDataObject.getName() + "' ! Terminating...");
       }
       DataObject referencesDataObject = dataObjectRepository.findOne(ConfiguredAPI.tenant.getId(), ConfiguredAPI.schema.getId(), fk.getReferences());
       if (referencesDataObject == null) {
